@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <\!-- Anti-cache headers -->
+    <!-- Anti-cache headers -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="styles_mobile.css">
     <!-- n8n Chat Widget CSS -->
     <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="chatbot_visible.css">
+    <link rel="stylesheet" href="chatbot_minimizable.css">
+    <link rel="stylesheet" href="whatsapp_button.css">
 </head>
 <body>
     <!-- Barra de navegación -->
@@ -682,6 +683,7 @@
     <script src="servicios_modal.js"></script>
     <script src="formularios_dinamicos.js"></script>
     <script src="app.js"></script>
+    <script src="chatbot_controller.js"></script>
 
     <!-- Widget oficial de n8n - CONFIGURADO EN ESPAÑOL -->
     <style>
@@ -777,4 +779,17 @@
 </body>
 </html>
 
+
+
+    <!-- Botón WhatsApp Flotante -->
+    <div class="whatsapp-button-container">
+        <a href="https://wa.me/56912345678?text=Hola%2C%20necesito%20asesoría%20legal" 
+           class="whatsapp-float-button pulse" 
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Contactar por WhatsApp">
+            💬
+            <span class="whatsapp-tooltip">¿Necesitas ayuda inmediata?</span>
+        </a>
+    </div>
 
