@@ -1,38 +1,50 @@
-/* CHATBOT MUY VISIBLE - ÍCONO GRANDE Y LLAMATIVO */
+/* CHATBOT SÚPER VISIBLE - BOTÓN ENORME */
 
-/* Botón launcher MÁS GRANDE que WhatsApp */
+/* Botón launcher MUCHO MÁS GRANDE Y VISIBLE */
 .chat-launcher {
-    width: 80px !important;
-    height: 80px !important;
+    width: 90px !important;
+    height: 90px !important;
     background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%) !important;
-    box-shadow: 0 12px 32px rgba(26, 115, 232, 0.6), 0 0 0 4px rgba(26, 115, 232, 0.2) !important;
-    animation: pulse-glow 2s infinite !important;
+    box-shadow:
+        0 16px 48px rgba(26, 115, 232, 0.8),
+        0 0 0 6px rgba(26, 115, 232, 0.3),
+        0 0 60px rgba(26, 115, 232, 0.4) !important;
+    animation: mega-pulse 1.5s infinite !important;
     z-index: 9999 !important;
-    border: 3px solid #ffffff !important;
+    border: 4px solid #ffffff !important;
+    bottom: 24px !important;
+    right: 24px !important;
 }
 
-/* Ícono dentro del botón más grande */
+/* Ícono dentro del botón MUCHO más grande */
 .chat-launcher svg,
 .chat-launcher img {
-    width: 45px !important;
-    height: 45px !important;
+    width: 50px !important;
+    height: 50px !important;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)) !important;
 }
 
-@keyframes pulse-glow {
+@keyframes mega-pulse {
     0%, 100% {
         transform: scale(1);
-        box-shadow: 0 12px 32px rgba(26, 115, 232, 0.6), 0 0 0 4px rgba(26, 115, 232, 0.2);
+        box-shadow:
+            0 16px 48px rgba(26, 115, 232, 0.8),
+            0 0 0 6px rgba(26, 115, 232, 0.3),
+            0 0 60px rgba(26, 115, 232, 0.4);
     }
     50% {
-        transform: scale(1.1);
-        box-shadow: 0 16px 40px rgba(26, 115, 232, 0.8), 0 0 0 6px rgba(26, 115, 232, 0.3);
+        transform: scale(1.15);
+        box-shadow:
+            0 20px 60px rgba(26, 115, 232, 1),
+            0 0 0 10px rgba(26, 115, 232, 0.4),
+            0 0 80px rgba(26, 115, 232, 0.6);
     }
 }
 
 /* Ventana chat más grande */
 .chat-window {
-    width: 420px !important;
-    height: 650px !important;
+    width: 440px !important;
+    height: 680px !important;
     max-height: 90vh !important;
     background: #f5f7fa !important;
 }
@@ -46,12 +58,13 @@
 
 /* Mensajes más grandes y legibles */
 .chat-message {
-    font-size: 15px !important;
-    line-height: 1.5 !important;
+    font-size: 16px !important;
+    line-height: 1.6 !important;
     background: #ffffff !important;
     border-radius: 12px !important;
-    padding: 12px 16px !important;
+    padding: 14px 18px !important;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+    margin-bottom: 12px !important;
 }
 
 /* Mensajes del bot con fondo azul claro */
@@ -71,40 +84,80 @@
 /* Header más prominente AZUL */
 .chat-header {
     background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%) !important;
-    padding: 20px !important;
+    padding: 24px !important;
     color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
 }
 
-/* Título del header en blanco */
+/* Título del header en blanco y más grande */
 .chat-header-title,
 .chat-title {
     color: #ffffff !important;
     font-weight: 600 !important;
+    font-size: 18px !important;
+}
+
+/* BOTONES DE SERVICIOS - MUY VISIBLES */
+.chat-message-quick-reply,
+.chat-quick-reply-button,
+button[class*="quick"],
+button[class*="suggestion"] {
+    background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 12px 20px !important;
+    border-radius: 24px !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    margin: 6px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3) !important;
+}
+
+.chat-message-quick-reply:hover,
+.chat-quick-reply-button:hover,
+button[class*="quick"]:hover,
+button[class*="suggestion"]:hover {
+    background: linear-gradient(135deg, #0d47a1 0%, #1a73e8 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(26, 115, 232, 0.4) !important;
 }
 
 /* Input más grande con fondo blanco */
-.chat-input {
-    font-size: 15px !important;
-    padding: 15px !important;
+.chat-input,
+.chat-input-field,
+input[class*="chat"] {
+    font-size: 16px !important;
+    padding: 16px !important;
     background: #ffffff !important;
     border: 2px solid #e8eef5 !important;
-    border-radius: 8px !important;
+    border-radius: 10px !important;
 }
 
-.chat-input:focus {
+.chat-input:focus,
+.chat-input-field:focus,
+input[class*="chat"]:focus {
     border-color: #1a73e8 !important;
     outline: none !important;
-    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1) !important;
+    box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.15) !important;
 }
 
-/* Botón enviar azul */
+/* Botón enviar azul y más grande */
 .chat-input-send,
-.chat-send-button {
+.chat-send-button,
+button[class*="send"] {
     background: #1a73e8 !important;
     color: #ffffff !important;
+    padding: 12px 20px !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
 }
 
 .chat-input-send:hover,
-.chat-send-button:hover {
+.chat-send-button:hover,
+button[class*="send"]:hover {
     background: #0d47a1 !important;
+    transform: scale(1.05) !important;
 }
