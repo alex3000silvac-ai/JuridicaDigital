@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <\!-- Anti-cache headers -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>JurídicaDigital - Portal del Cliente</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="servicios_modal.css">
     <link rel="stylesheet" href="formularios_dinamicos.css">    <link rel="stylesheet" href="cliente_area.css">
     <link rel="stylesheet" href="styles_mobile.css">
+    <!-- n8n Chat Widget CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
 </head>
 <body>
     <!-- Barra de navegación -->
@@ -539,7 +545,7 @@
                 <!-- Por ahora, artículos de ejemplo -->
                 <article class="blog-card">
                     <div class="blog-image">
-                        <img src="https://via.placeholder.com/400x250/1a73e8/ffffff?text=Blog+1" alt="Artículo 1">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231a73e8' width='400' height='250'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='white' text-anchor='middle' dy='.3em' font-family='Arial'%3EProtección de Datos%3C/text%3E%3C/svg%3E" alt="Artículo 1">
                         <div class="blog-date">10 Nov 2025</div>
                     </div>
                     <div class="blog-content">
@@ -551,7 +557,7 @@
 
                 <article class="blog-card">
                     <div class="blog-image">
-                        <img src="https://via.placeholder.com/400x250/34a853/ffffff?text=Blog+2" alt="Artículo 2">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%2334a853' width='400' height='250'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='white' text-anchor='middle' dy='.3em' font-family='Arial'%3EDerechos Laborales%3C/text%3E%3C/svg%3E" alt="Artículo 2">
                         <div class="blog-date">08 Nov 2025</div>
                     </div>
                     <div class="blog-content">
@@ -563,7 +569,7 @@
 
                 <article class="blog-card">
                     <div class="blog-image">
-                        <img src="https://via.placeholder.com/400x250/ea4335/ffffff?text=Blog+3" alt="Artículo 3">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%23ea4335' width='400' height='250'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='white' text-anchor='middle' dy='.3em' font-family='Arial'%3EDivorcio Express%3C/text%3E%3C/svg%3E" alt="Artículo 3">
                         <div class="blog-date">05 Nov 2025</div>
                     </div>
                     <div class="blog-content">
@@ -670,14 +676,6 @@
         </div>
     </footer>
 
-    <!-- Widget oficial de n8n - SOLUCION PROBADA GITHUB -->
-    <script src="https://cdn.jsdelivr.net/npm/n8n-embedded-chat-interface@latest/output/index.js"></script>
-    <n8n-embedded-chat-interface
-        label="JuridicaDigital - Asistente Virtual"
-        hostname="http://181.43.39.18:5678/webhook/chat"
-        open-on-start="false">
-    </n8n-embedded-chat-interface>
-
     <!-- Widget WhatsAppget WhatsApp Flotante -->
     <div id="whatsapp-widget" class="whatsapp-float" onclick="openWhatsApp()">
         <svg viewBox="0 0 32 32" width="32" height="32">
@@ -691,19 +689,59 @@
     <script src="formularios_dinamicos.js"></script>
     <script src="app.js"></script>
 
-    <!-- Widget oficial de n8n - SOLUCION PROBADA GITHUB -->
-    <script src="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.js"></script>
-    <script>
-    window.addEventListener('DOMContentLoaded', function() {
-        createChat({
-            webhookUrl: 'http://181.43.39.18:5678/webhook/chat',
-            mode: 'window',
-            chatWindowOptions: {
-                title: 'JuridicaDigital - Asistente Virtual',
-                welcomeMessage: 'Hola! Soy el asistente virtual de JuridicaDigital. Como puedo ayudarte hoy?',
-                showWelcomeScreen: true
+    <!-- Widget oficial de n8n - CONFIGURADO EN ESPAÑOL -->
+    <style>
+    /* Estilos personalizados del chatbot - Colores azules de JurídicaDigital */
+    :root {
+        --chat--color-primary: #1a73e8;
+        --chat--color-primary-shade-50: #1557b0;
+        --chat--color-primary-shade-100: #0d47a1;
+        --chat--color-secondary: #34a853;
+        --chat--color-white: #ffffff;
+        --chat--color-light-background: #f5f7fa;
+        --chat--color-medium-background: #e8eef5;
+    }
+    /* Posicionar el chatbot más a la izquierda para que no tape WhatsApp */
+    .chat-window-wrapper {
+        bottom: 20px !important;
+        right: 80px !important;
+    }
+    </style>
+    <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+    createChat({
+        webhookUrl: 'https://www.juridicadigital.cl/webhook_proxy.php?action=chat',
+        mode: 'window',
+        i18n: {
+            es: {
+                title: 'JurídicaDigital - Asesoría Legal',
+                subtitle: 'Respuestas en segundos',
+                footer: '',
+                getStarted: '¡Hola! 👋',
+                inputPlaceholder: 'Escribe tu consulta legal aquí...',
+                closeButtonTooltip: 'Cerrar chat'
             }
-        });
+        },
+        defaultLanguage: 'es',
+        initialMessages: [
+            'Hola! Soy JurídicaDigital, tu asistente legal virtual 👨‍⚖️',
+            '',
+            'Puedo ayudarte con:',
+            '📄 Constitución de empresas',
+            '👨‍👩‍👧 Derecho de familia (divorcios, pensión alimenticia)',
+            '💼 Consultas laborales',
+            '🏠 Derecho civil y contratos',
+            '⚖️ Asesoría legal general',
+            '',
+            '¿En qué puedo ayudarte hoy?'
+        ],
+        chatWindowOptions: {
+            title: 'JurídicaDigital',
+            welcomeMessage: 'Hola! Soy JurídicaDigital 👨‍⚖️',
+            showWelcomeScreen: true,
+            defaultOpen: false
+        }
     });
     </script>
 </body>
