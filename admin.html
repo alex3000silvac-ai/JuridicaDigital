@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - JurídicaDigital</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="screen active">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <h1>Panel de Administración</h1>
+                    <p>JurídicaDigital</p>
+                </div>
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="emailAdmin">Email:</label>
+                        <input type="email" id="emailAdmin" name="email" required
+                               placeholder="admin@juridicadigital.cl">
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordAdmin">Contraseña:</label>
+                        <input type="password" id="passwordAdmin" name="password" required
+                               placeholder="Ingresa tu contraseña">
+                    </div>
+                    <div id="loginError" class="error-message"></div>
+                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboardScreen" class="screen">
+        <!-- Top Bar -->
+        <div class="topbar">
+            <div class="topbar-left">
+                <h1>JurídicaDigital - Panel de Abogado</h1>
+            </div>
+            <div class="topbar-right">
+                <span id="adminName" class="admin-name"></span>
+                <button id="btnLogout" class="btn btn-sm">Cerrar Sesión</button>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-container">
+            <div class="stat-card stat-pending">
+                <div class="stat-icon">⏳</div>
+                <div class="stat-info">
+                    <h3 id="statPendientes">0</h3>
+                    <p>Pendientes de Aprobación</p>
+                </div>
+            </div>
+            <div class="stat-card stat-today">
+                <div class="stat-icon">✓</div>
+                <div class="stat-info">
+                    <h3 id="statAprobadosHoy">0</h3>
+                    <p>Aprobados Hoy</p>
+                </div>
+            </div>
+            <div class="stat-card stat-week">
+                <div class="stat-icon">📊</div>
+                <div class="stat-info">
+                    <h3 id="statAprobadosSemana">0</h3>
+                    <p>Aprobados Esta Semana</p>
+                </div>
+            </div>
+            <div class="stat-card stat-total">
+                <div class="stat-icon">📁</div>
+                <div class="stat-info">
+                    <h3 id="statTotalProcesados">0</h3>
+                    <p>Total Procesados</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="pendientes">
+                Pendientes (<span id="contadorPendientes">0</span>)
+            </button>
+            <button class="tab-btn" data-tab="historial">
+                Historial
+            </button>
+        </div>
+
+        <!-- Tab Content: Pendientes -->
+        <div id="tabPendientes" class="tab-content active">
+            <div class="content-header">
+                <h2>Documentos Pendientes de Aprobación</h2>
+                <button id="btnRefresh" class="btn btn-sm">🔄 Actualizar</button>
+            </div>
+            <div id="listaPendientes" class="documentos-list">
+                <!-- Se llena dinámicamente -->
+            </div>
+        </div>
+
+        <!-- Tab Content: Historial -->
+        <div id="tabHistorial" class="tab-content">
+            <div class="content-header">
+                <h2>Historial de Documentos Procesados</h2>
+            </div>
+            <div id="listaHistorial" class="documentos-list">
+                <!-- Se llena dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Ver Documento -->
+    <div id="modalDocumento" class="modal">
+        <div class="modal-content modal-large">
+            <span class="modal-close">&times;</span>
+
+            <div class="modal-header">
+                <h2>Revisión de Documento</h2>
+            </div>
+
+            <div class="modal-body">
+                <!-- Información del Cliente -->
+                <div class="info-section">
+                    <h3>Información del Cliente</h3>
+                    <div class="info-grid">
+                        <div>
+                            <strong>Nombre:</strong>
+                            <span id="modalClienteNombre"></span>
+                        </div>
+                        <div>
+                            <strong>RUT:</strong>
+                            <span id="modalClienteRut"></span>
+                        </div>
+                        <div>
+                            <strong>Email:</strong>
+                            <span id="modalClienteEmail"></span>
+                        </div>
+                        <div>
+                            <strong>Documento:</strong>
+                            <span id="modalNombreArchivo"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Análisis de IA -->
+                <div class="info-section">
+                    <h3>Análisis Generado por IA</h3>
+                    <div id="modalAnalisis" class="analisis-container">
+                        <!-- Se llena dinámicamente -->
+                    </div>
+                </div>
+
+                <!-- Editor de Informe -->
+                <div class="info-section">
+                    <h3>Editar Informe (Opcional)</h3>
+                    <textarea id="modalInformeEditado" class="editor-textarea"
+                              placeholder="Si deseas modificar el informe, edita aquí. Si no, se enviará el informe original."></textarea>
+                </div>
+
+                <!-- Notas del Abogado -->
+                <div class="info-section">
+                    <h3>Notas (Opcional)</h3>
+                    <textarea id="modalNotas" class="editor-textarea small"
+                              placeholder="Notas internas sobre este caso (no visible para el cliente)"></textarea>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnAprobar" class="btn btn-success">✓ Aprobar</button>
+                <button id="btnEditarYAprobar" class="btn btn-primary">✓ Editar y Aprobar</button>
+                <button id="btnRechazar" class="btn btn-danger">✗ Rechazar</button>
+                <button id="btnCancelar" class="btn btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Rechazar Documento -->
+    <div id="modalRechazar" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+
+            <div class="modal-header">
+                <h2>Rechazar Documento</h2>
+            </div>
+
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas rechazar este documento?</p>
+                <p class="text-small">El cliente NO recibirá este informe.</p>
+
+                <div class="form-group">
+                    <label for="motivoRechazo">Motivo (interno):</label>
+                    <textarea id="motivoRechazo" class="editor-textarea small"
+                              placeholder="Explica por qué rechazas este documento"></textarea>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnConfirmarRechazo" class="btn btn-danger">Confirmar Rechazo</button>
+                <button id="btnCancelarRechazo" class="btn btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Procesando...</p>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="admin_app.js"></script>
+</body>
+</html>

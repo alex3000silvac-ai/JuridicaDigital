@@ -1,0 +1,712 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>JurídicaDigital - Portal del Cliente</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="servicios_modal.css">
+    <link rel="stylesheet" href="formularios_dinamicos.css">    <link rel="stylesheet" href="cliente_area.css">
+    <link rel="stylesheet" href="styles_mobile.css">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>⚖️ JurídicaDigital</h1>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#servicios" class="nav-link">Servicios</a>
+                <a href="#como-funciona" class="nav-link">Cómo Funciona</a>
+                <a href="#faq" class="nav-link">Preguntas Frecuentes</a>
+            </div>
+            <div class="nav-buttons">
+                <a href="#solicitar" class="btn-cta">Solicitar Presupuesto</a>
+                <button class="login-btn" onclick="showLoginModal()">🔐 Iniciar Sesión</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>Accede a tu cuenta</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="rutLogin">RUT</label>
+                    <input type="text" id="rutLogin" placeholder="18765432-1" required>
+                </div>
+                <div class="form-group">
+                    <label for="emailLogin">Email</label>
+                    <input type="email" id="emailLogin" placeholder="tu@email.com" required>
+                </div>
+                <button type="submit" class="btn-primary">Acceder</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sección Hero -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Servicios Legales con IA + Abogados Expertos</h1>
+                <p class="hero-subtitle">La primera plataforma legal que combina tecnología de IA con supervisión humana profesional</p>
+
+                <!-- Beneficios Destacados -->
+                <div class="hero-benefits">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🔒</div>
+                        <div class="benefit-text">
+                            <strong>100% Privado</strong>
+                            <span>Servidores locales, NO en la nube</span>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">⚡</div>
+                        <div class="benefit-text">
+                            <strong>Entrega en 24h</strong>
+                            <span>Respuesta rápida garantizada</span>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">👨‍⚖️</div>
+                        <div class="benefit-text">
+                            <strong>Revisado por Abogados</strong>
+                            <span>2 profesionales por cada caso</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-buttons">
+                    <a href="#servicios" class="btn-primary">Ver Servicios</a>
+                    <a href="#solicitar" class="btn-secondary">Solicitar Presupuesto</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Cómo Funciona -->
+    <section id="como-funciona" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">¿Cómo Funciona el Agente Legal?</h2>
+            <p class="section-subtitle">Inteligencia Artificial + Abogados Expertos = Tu Solución Legal</p>
+
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">🔒</div>
+                    <h3>Privacidad Total</h3>
+                    <p>Nuestro sistema de IA elimina toda información que permita identificarte en la red, dejando solo los aspectos jurídicos a analizar. <strong>Todo en servidores locales privados, NO en la nube.</strong></p>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">📚</div>
+                    <h3>Base de Datos Jurídica Local</h3>
+                    <p>Utilizamos una base de datos jurídica interna dentro de nuestro servidor privado para identificar las materias relevantes a tu caso.</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">⚖️</div>
+                    <h3>Abogado Especializado</h3>
+                    <p>Un abogado humano orienta las materias hacia jurisprudencia, códigos y leyes, generando un informe automatizado personalizado.</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">✅</div>
+                    <h3>Revisión y Aprobación</h3>
+                    <p>Un segundo abogado experto revisa y da el visto bueno al informe. <strong>Siempre revisado por un profesional del derecho.</strong></p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <div class="highlight-icon">🛡️</div>
+                <h3>Garantía de Privacidad y Profesionalismo</h3>
+                <p><strong>Tu información NUNCA sale de nuestros servidores locales.</strong> No usamos servicios en la nube externos. Cada informe es supervisado y aprobado por abogados titulados con años de experiencia.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Servicios -->
+    <section id="servicios" class="services">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <p class="section-subtitle">Catálogo completo de servicios legales automatizados</p>
+
+            <!-- Los servicios se cargan desde servicios_modal.js -->
+
+            <!-- Loading State -->
+            <div id="servicesLoading" class="services-loading">
+                <div class="loading"></div>
+                <p>Cargando servicios...</p>
+            </div>
+
+            <!-- Grilla de Servicios (se llenará dinámicamente) -->
+            <div id="servicesGrid" class="services-grid" style="display: none;">
+                <!-- Los servicios se cargarán aquí dinámicamente -->
+            </div>
+
+            <!-- Mensaje si no hay resultados -->
+            <div id="noResults" class="no-results" style="display: none;">
+                <p>No se encontraron servicios con ese criterio de búsqueda.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Sobre Nosotros -->
+    <section id="sobre-nosotros" class="about-us">
+        <div class="container">
+            <h2 class="section-title">Sobre Nosotros</h2>
+            <p class="section-subtitle">Innovación Legal con Seguridad y Profesionalismo</p>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Nuestra Misión</h3>
+                    <p>En <strong>JurídicaDigital</strong>, combinamos lo mejor de la tecnología con la experiencia humana para ofrecer servicios legales accesibles, seguros y profesionales.</p>
+
+                    <p>Creemos que todos merecen acceso a orientación legal de calidad, por eso hemos desarrollado un sistema que utiliza <strong>inteligencia artificial local</strong> asistida por <strong>abogados titulados</strong> para entregar informes legales precisos y confiables.</p>
+
+                    <h3>¿Por Qué Somos Diferentes?</h3>
+                    <ul class="features-list">
+                        <li>
+                            <span class="feature-icon">🔐</span>
+                            <strong>Servidores Privados Locales:</strong> Tu información NUNCA está en la nube. Todo se procesa en nuestros servidores seguros y privados.
+                        </li>
+                        <li>
+                            <span class="feature-icon">👨‍⚖️</span>
+                            <strong>Revisión Humana Siempre:</strong> Cada informe es revisado y aprobado por abogados expertos antes de ser entregado.
+                        </li>
+                        <li>
+                            <span class="feature-icon">⚡</span>
+                            <strong>Rapidez y Eficiencia:</strong> Entregas en 24 horas máximo, sin sacrificar calidad.
+                        </li>
+                        <li>
+                            <span class="feature-icon">💰</span>
+                            <strong>Precios Transparentes:</strong> Costos claros desde el inicio, sin sorpresas.
+                        </li>
+                        <li>
+                            <span class="feature-icon">🎓</span>
+                            <strong>Respaldo Profesional:</strong> Equipo de abogados con años de experiencia en diferentes áreas del derecho.
+                        </li>
+                    </ul>
+
+                    <h3>Nuestro Compromiso</h3>
+                    <p>Nos comprometemos a proteger tu privacidad y entregar información legal precisa que te ayude a tomar las mejores decisiones. Aunque nuestros informes son de <strong>orientación legal</strong> y no constituyen prueba pericial, te proporcionamos la base sólida que necesitas para entender tu situación jurídica.</p>
+                </div>
+
+                <div class="about-stats">
+                    <div class="stat-box">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Privado y Seguro</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">24h</div>
+                        <div class="stat-label">Tiempo de Entrega</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Abogados por Caso</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección FAQ -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <p class="section-subtitle">Resolvemos tus dudas sobre nuestros servicios</p>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Cómo funciona el Agente Legal?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El Agente Legal es una combinación entre inteligencia artificial y abogados dedicados. El proceso es el siguiente:</p>
+                        <ol>
+                            <li>La IA elimina toda información que permita identificarte en la red, dejando solo los aspectos jurídicos.</li>
+                            <li>Utilizamos una base de datos jurídica interna en nuestro servidor privado para identificar las materias relevantes.</li>
+                            <li>Un abogado orienta estas materias hacia jurisprudencia, códigos y leyes, generando un informe automatizado.</li>
+                            <li>Un segundo abogado revisa y aprueba el informe antes de entregártelo.</li>
+                        </ol>
+                        <p><strong>Importante:</strong> Todo el proceso ocurre en servidores locales privados, NO en la nube.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Qué pasa si no quedo conforme con la respuesta?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Puedes solicitar un segundo informe que será revisado por un equipo de dos abogados, enfocándose específicamente en los puntos que consideres poco claros o necesiten mayor profundidad.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Estos informes tienen carácter o relevancia legal?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Los informes que recibes son de <strong>orientación legal</strong>. NO sirven para ser presentados como prueba pericial, informe en derecho o para otro objetivo que no sea la orientación del cliente ante una determinada situación.</p>
+                        <p>Su propósito es ayudarte a comprender tu situación jurídica y tomar decisiones informadas.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Puedo solicitar reembolso si no quedo satisfecho?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Tenemos una política de garantía para solicitudes de reembolso. Sin embargo, debes considerar que en todo informe participa un abogado y, por consiguiente, sus honorarios profesionales están involucrados.</p>
+                        <p>Evalúa cada caso de reembolso considerando el trabajo profesional realizado.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Si decido continuar mi caso con ustedes, ¿puedo abonar el valor del informe?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Sí.</strong> Si luego de realizar tu consulta o informe legal decides seguir el caso con nosotros, puedes solicitar que se abone dicho valor al costo total de la acción legal.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Los costos informados en la plataforma son fijos?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Los precios mostrados son los costos base de nuestros servicios. Sin embargo, existen ciertas acciones que se cobran adicionalmente al juicio:</p>
+                        <ul>
+                            <li><strong>Notificaciones judiciales</strong> a las partes</li>
+                            <li><strong>Informes periciales</strong> especializados</li>
+                            <li><strong>Multas disciplinarias</strong> al abogado por razones atribuibles al cliente</li>
+                            <li><strong>Cambios en la naturaleza del juicio</strong> (ej: se demanda por un motivo y se determina que es otro)</li>
+                            <li><strong>Gastos por acciones</strong> requeridas por el cliente que no son recomendadas por el abogado</li>
+                        </ul>
+                        <p>Siempre te informaremos de cualquier costo adicional antes de proceder.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Cuánto tiempo demora la entrega del informe?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Una vez realizado el pago, entregaremos tu informe en un máximo de <strong>24 horas</strong>. El informe será enviado a tu correo electrónico y también estará disponible en tu área de cliente.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Cómo se realiza el pago?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El pago se realiza <strong>antes</strong> de procesar tu solicitud. Aceptamos los siguientes métodos:</p>
+                        <ul>
+                            <li>Tarjetas de crédito y débito</li>
+                            <li>Transferencia bancaria</li>
+                            <li>Webpay</li>
+                        </ul>
+                        <p>Una vez confirmado el pago, comenzamos inmediatamente a trabajar en tu caso.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Mi información está segura?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Absolutamente.</strong> Tu información se procesa y almacena en <strong>servidores privados locales</strong>, NO en servicios de nube externos. Utilizamos protocolos de seguridad avanzados y cumplimos con la Ley 21.719 de Protección de Datos Personales.</p>
+                        <p>Ningún dato personal sale de nuestros servidores seguros.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>¿Quién revisa mi caso?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Tu caso es revisado por <strong>dos abogados titulados</strong>:</p>
+                        <ol>
+                            <li>Un <strong>abogado especialista</strong> que orienta el análisis legal y genera el informe inicial.</li>
+                            <li>Un <strong>segundo abogado revisor</strong> que verifica, complementa y aprueba el informe final.</li>
+                        </ol>
+                        <p>Esto garantiza que siempre recibas información legal revisada por profesionales experimentados.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Solicitar Presupuesto -->
+    <section id="solicitar" class="form-section">
+        <div class="container">
+            <h2 class="section-title">Solicita tu Presupuesto</h2>
+            <p class="section-subtitle">Respuesta en máximo 24 horas</p>
+
+            <form id="presupuestoForm" class="presupuesto-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre *</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido_paterno">Apellido Paterno *</label>
+                        <input type="text" id="apellido_paterno" name="apellido_paterno" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="apellido_materno">Apellido Materno</label>
+                        <input type="text" id="apellido_materno" name="apellido_materno">
+                    </div>
+                    <div class="form-group">
+                        <label for="rut">RUT *</label>
+                        <input type="text" id="rut" name="rut" placeholder="18765432-1" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono *</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="+56912345678" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ciudad">Ciudad *</label>
+                        <input type="text" id="ciudad" name="ciudad" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo_servicio">Servicio que necesitas *</label>
+                        <select id="tipo_servicio" name="tipo_servicio" required>
+                            <option value="">Selecciona un servicio</option>
+                            <option value="Informe Preliminar del Caso + Ebook">Informe Preliminar ($7,500)</option>
+                            <option value="Juicios Laborales (Defensa del Trabajador/Empleador)">Juicio Laboral (desde $800,000)</option>
+                            <option value="Counsel / Asesoría Legal Continua">Counsel Mensual (desde $30,000/mes)</option>
+                            <option value="Derecho Civil - Contratos y Herencias">Derecho Civil</option>
+                            <option value="Constitución de Empresas">Constitución de Empresa</option>
+                            <option value="Derecho Penal - Defensa Penal">Defensa Penal</option>
+                            <option value="Otro">Otro (especificar en descripción)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion">Describe tu caso *</label>
+                    <textarea id="descripcion" name="descripcion" rows="6" placeholder="Cuéntanos los detalles de tu caso..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="aceptar_terminos" required>
+                        Acepto los <a href="#" target="_blank">términos y condiciones</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary btn-large">Enviar Solicitud</button>
+            </form>
+
+            <div id="successMessage" class="success-message" style="display: none;">
+                <div class="success-icon">✓</div>
+                <h3>¡Solicitud enviada exitosamente!</h3>
+                <p>Hemos recibido tu solicitud. Un miembro de nuestro equipo te contactará en un máximo de 24 horas con un presupuesto detallado.</p>
+                <p><strong>Número de referencia:</strong> <span id="referenciaNumero"></span></p>
+                <button onclick="resetForm()" class="btn-secondary">Enviar otra solicitud</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Mis Casos (requiere login) -->
+    <section id="mis-casos" class="mis-casos" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">Mis Casos</h2>
+
+            <div class="client-header">
+                <div class="client-info">
+                    <h3 id="clienteNombre">Cargando...</h3>
+                    <p id="clienteRut"></p>
+                </div>
+                <button onclick="logout()" class="btn-secondary">Cerrar Sesión</button>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Estadísticas del cliente -->
+                <div class="stat-card">
+                    <div class="stat-icon">📁</div>
+                    <div class="stat-info">
+                        <h4 id="totalCasos">0</h4>
+                        <p>Total Casos</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⚙️</div>
+                    <div class="stat-info">
+                        <h4 id="casosActivos">0</h4>
+                        <p>Casos Activos</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📄</div>
+                    <div class="stat-info">
+                        <h4 id="totalDocumentos">0</h4>
+                        <p>Documentos</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-info">
+                        <h4 id="totalPagado">$0</h4>
+                        <p>Total Pagado</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de casos -->
+            <div class="casos-list">
+                <h3>Mis Casos Activos</h3>
+                <div id="casosContainer">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Lista de documentos -->
+            <div class="documentos-list">
+                <div class="documentos-header">
+                    <h3>Mis Documentos</h3>
+                    <button class="btn-primary" onclick="mostrarFormularioSubida()">Subir Documento</button>
+                </div>
+
+                <!-- Formulario de subida (oculto por defecto) -->
+                <div id="uploadForm" class="upload-form" style="display: none;">
+                    <h4>Subir Documento para Análisis con N8N</h4>
+                    <p style="font-size: 14px; color: #5f6368;">Sube tu eBook del Poder Judicial u otro documento legal. N8N lo procesará automáticamente.</p>
+
+                    <div class="form-group">
+                        <label for="archivoUpload">Selecciona el archivo (PDF, DOC, DOCX - Max 10MB)</label>
+                        <input type="file" id="archivoUpload" accept=".pdf,.doc,.docx" onchange="handleFileSelect(event)">
+                    </div>
+
+                    <div id="fileInfo" class="file-info" style="display: none;">
+                        <p><strong>Archivo seleccionado:</strong> <span id="fileName"></span></p>
+                        <p><strong>Tamaño:</strong> <span id="fileSize"></span></p>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button class="btn-primary" id="btnSubirDoc" onclick="subirDocumentoSeleccionado()" disabled>Subir Documento</button>
+                        <button class="btn-secondary" onclick="cancelarSubida()">Cancelar</button>
+                    </div>
+                </div>
+
+                <div id="documentosContainer">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Blog/Noticias -->
+    <section id="blog" class="blog-section">
+        <div class="container">
+            <h2 class="section-title">Noticias y Artículos</h2>
+            <p class="section-subtitle">Mantente informado sobre temas legales relevantes</p>
+
+            <div id="blog-grid" class="blog-grid">
+                <!-- Las noticias se cargarán aquí dinámicamente -->
+                <!-- Por ahora, artículos de ejemplo -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://via.placeholder.com/400x250/1a73e8/ffffff?text=Blog+1" alt="Artículo 1">
+                        <div class="blog-date">10 Nov 2025</div>
+                    </div>
+                    <div class="blog-content">
+                        <h3>Nueva Ley de Protección de Datos Personales</h3>
+                        <p>Conoce los cambios que trae la Ley 21.719 y cómo afecta a tu empresa...</p>
+                        <a href="#" class="btn-small">Leer más</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://via.placeholder.com/400x250/34a853/ffffff?text=Blog+2" alt="Artículo 2">
+                        <div class="blog-date">08 Nov 2025</div>
+                    </div>
+                    <div class="blog-content">
+                        <h3>Derechos Laborales en Chile 2025</h3>
+                        <p>Actualización de los derechos laborales y cambios en el Código del Trabajo...</p>
+                        <a href="#" class="btn-small">Leer más</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://via.placeholder.com/400x250/ea4335/ffffff?text=Blog+3" alt="Artículo 3">
+                        <div class="blog-date">05 Nov 2025</div>
+                    </div>
+                    <div class="blog-content">
+                        <h3>Divorcio Express: Todo lo que Necesitas Saber</h3>
+                        <p>Guía completa sobre el proceso de divorcio de mutuo acuerdo en Chile...</p>
+                        <a href="#" class="btn-small">Leer más</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="blog-load-more">
+                <button class="btn-secondary" onclick="loadMoreNews()">Ver Más Artículos</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>JurídicaDigital</h3>
+                    <p>Servicios legales modernos con tecnología de vanguardia</p>
+                    <div class="contact-item">
+                        <span class="icon">📧</span>
+                        <span>contacto@juridicadigital.cl</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">📱</span>
+                        <span>+56 9 XXXX XXXX</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">📍</span>
+                        <span>Santiago, Chile</span>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Tu email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="5" placeholder="Tu mensaje" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JurídicaDigital</h3>
+                    <p>Servicios legales con tecnología de IA supervisados por abogados titulados.</p>
+                    <p class="footer-security">🔐 Servidores Privados Locales - Tu información NUNCA en la nube</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#como-funciona">Cómo Funciona</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                        <li><a href="#faq">Preguntas Frecuentes</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="https://tiktok.com/@juridicadigital" target="_blank" class="social-btn tiktok" title="TikTok">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com/juridicadigital" target="_blank" class="social-btn instagram" title="Instagram">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/>
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com/juridicadigital" target="_blank" class="social-btn facebook" title="Facebook">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 JurídicaDigital. Todos los derechos reservados.</p>
+                <p>Servicios legales con tecnología de IA supervisados por abogados titulados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Widget oficial de n8n - SOLUCION PROBADA GITHUB -->
+    <script src="https://cdn.jsdelivr.net/npm/n8n-embedded-chat-interface@latest/output/index.js"></script>
+    <n8n-embedded-chat-interface
+        label="JuridicaDigital - Asistente Virtual"
+        hostname="http://181.43.39.18:5678/webhook/chat"
+        open-on-start="false">
+    </n8n-embedded-chat-interface>
+
+    <!-- Widget WhatsAppget WhatsApp Flotante -->
+    <div id="whatsapp-widget" class="whatsapp-float" onclick="openWhatsApp()">
+        <svg viewBox="0 0 32 32" width="32" height="32">
+            <path fill="currentColor" d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-4.713 1.262 1.262-4.669-0.292-0.508c-1.207-2.100-1.847-4.507-1.847-6.973 0-7.51 6.11-13.62 13.62-13.62s13.62 6.11 13.62 13.62c0 7.51-6.11 13.62-13.62 13.62zM21.305 19.26c-0.346-0.174-2.049-1.007-2.366-1.123-0.316-0.117-0.547-0.174-0.776 0.174s-0.892 1.123-1.094 1.347c-0.201 0.224-0.402 0.251-0.748 0.076-0.346-0.174-1.461-0.539-2.785-1.722-1.031-0.922-1.727-2.061-1.929-2.407-0.201-0.346-0.021-0.533 0.152-0.706 0.156-0.155 0.346-0.402 0.519-0.603 0.174-0.201 0.231-0.346 0.346-0.571 0.117-0.224 0.058-0.427-0.028-0.603-0.087-0.174-0.776-1.87-1.063-2.565-0.28-0.672-0.56-0.58-0.776-0.591-0.201-0.010-0.431-0.012-0.661-0.012s-0.603 0.087-0.92 0.427c-0.316 0.346-1.206 1.179-1.206 2.873s1.235 3.333 1.406 3.561c0.174 0.224 2.425 3.732 5.872 5.234 0.821 0.354 1.462 0.566 1.962 0.724 0.825 0.262 1.577 0.225 2.168 0.137 0.662-0.099 2.049-0.835 2.335-1.642 0.288-0.807 0.288-1.501 0.201-1.642-0.086-0.14-0.316-0.224-0.661-0.398z"/>
+        </svg>
+        <span>¿Necesitas ayuda?</span>
+    </div>
+
+    <script src="informe_preliminar.js"></script>    <script src="pagos_simplificado.js"></script>
+    <script src="servicios_modal.js"></script>
+    <script src="formularios_dinamicos.js"></script>
+    <script src="app.js"></script>
+
+    <!-- Widget oficial de n8n - SOLUCION PROBADA GITHUB -->
+    <script src="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.js"></script>
+    <script>
+    window.addEventListener('DOMContentLoaded', function() {
+        createChat({
+            webhookUrl: 'http://181.43.39.18:5678/webhook/chat',
+            mode: 'window',
+            chatWindowOptions: {
+                title: 'JuridicaDigital - Asistente Virtual',
+                welcomeMessage: 'Hola! Soy el asistente virtual de JuridicaDigital. Como puedo ayudarte hoy?',
+                showWelcomeScreen: true
+            }
+        });
+    });
+    </script>
+</body>
+</html>
+
+

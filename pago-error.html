@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error en Pago - JurídicaDigital</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles_opcion_c.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .error-container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 3rem;
+            text-align: center;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .error-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            animation: scaleIn 0.5s ease 0.2s both;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .error-icon svg {
+            width: 60px;
+            height: 60px;
+            fill: white;
+        }
+
+        .error-title {
+            font-size: 2.5rem;
+            color: #dc3545;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .error-message {
+            font-size: 1.125rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .info-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .info-box h3 {
+            font-size: 1.125rem;
+            color: #856404;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info-box li {
+            padding: 0.5rem 0;
+            color: #856404;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .info-box li::before {
+            content: "•";
+            font-weight: bold;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .help-box {
+            background: #e7f3ff;
+            border-left: 4px solid #0d6efd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .help-box h3 {
+            font-size: 1.125rem;
+            color: #084298;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .help-box p {
+            color: #084298;
+            margin: 0.5rem 0;
+        }
+
+        .help-box a {
+            color: #0d6efd;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .help-box a:hover {
+            text-decoration: underline;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-retry {
+            background: linear-gradient(135deg, var(--primary-color), #1557b0);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+        }
+
+        .btn-retry:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 115, 232, 0.4);
+        }
+
+        .btn-contact {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-contact:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .secondary-actions {
+            margin-top: 1.5rem;
+        }
+
+        .secondary-actions a {
+            color: #6c757d;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .secondary-actions a:hover {
+            color: #495057;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .error-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .error-title {
+                font-size: 2rem;
+            }
+
+            .error-message {
+                font-size: 1rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn-retry,
+            .btn-contact {
+                width: 100%;
+                padding: 1rem;
+            }
+
+            .secondary-actions a {
+                display: block;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+            </svg>
+        </div>
+
+        <h1 class="error-title">Error en el Pago</h1>
+
+        <p class="error-message">
+            No pudimos procesar tu pago en este momento.<br>
+            No te preocupes, <strong>no se ha realizado ningún cargo</strong>.
+        </p>
+
+        <div class="info-box">
+            <h3>⚠️ Posibles Causas</h3>
+            <ul>
+                <li>Fondos insuficientes en tu cuenta</li>
+                <li>Tarjeta rechazada por tu banco</li>
+                <li>Límite de compra diario excedido</li>
+                <li>Datos de tarjeta incorrectos</li>
+                <li>Conexión interrumpida durante el proceso</li>
+                <li>Restricciones de seguridad de tu banco</li>
+            </ul>
+        </div>
+
+        <div class="help-box">
+            <h3>💡 ¿Qué puedes hacer?</h3>
+            <p><strong>1. Intenta nuevamente</strong> - Muchas veces el problema se resuelve en un segundo intento</p>
+            <p><strong>2. Verifica con tu banco</strong> - Asegúrate de que tu tarjeta esté habilitada para compras online</p>
+            <p><strong>3. Usa otro método de pago</strong> - Prueba con una tarjeta diferente</p>
+            <p><strong>4. Contáctanos</strong> - Podemos ayudarte directamente: <a href="mailto:contacto@juridicadigital.cl">contacto@juridicadigital.cl</a></p>
+        </div>
+
+        <div class="button-group">
+            <a href="index_opcion_c.html" class="btn-retry">Intentar Nuevamente</a>
+            <a href="index_opcion_c.html#solicitar" class="btn-contact">Solicitar Asistencia</a>
+        </div>
+
+        <div class="secondary-actions">
+            <a href="index_opcion_c.html">Volver al Inicio</a>
+            <a href="index_opcion_c.html#servicios">Ver Servicios</a>
+        </div>
+    </div>
+
+    <script>
+        // Opcional: Limpiar parámetros de URL de Flow
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+
+        // Log para analytics (opcional)
+        console.log('[Pago] Página de error cargada');
+
+        // Opcional: Capturar razón del error desde URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const errorReason = urlParams.get('reason');
+        if (errorReason) {
+            console.log('[Pago] Razón del error:', errorReason);
+        }
+    </script>
+</body>
+</html>

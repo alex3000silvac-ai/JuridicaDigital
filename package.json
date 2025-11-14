@@ -1,0 +1,12 @@
+{
+  "name": "juridicadigital-website",
+  "version": "1.0.0",
+  "description": "JurídicaDigital - Portal del Cliente con Chatbot n8n",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site - no build needed'",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
