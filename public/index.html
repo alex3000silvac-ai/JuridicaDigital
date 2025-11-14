@@ -703,6 +703,42 @@
     }
     /* Posicionar el chatbot más a la izquierda para que no tape WhatsApp */
     .chat-window-wrapper {
+    }
+
+    /* HACER BOTÓN CHATBOT MÁS GRANDE Y VISIBLE */
+    .chat-launcher {
+        width: 70px !important;
+        height: 70px !important;
+        background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%) !important;
+        box-shadow: 0 8px 24px rgba(26, 115, 232, 0.4) !important;
+        animation: pulse-glow 2s infinite !important;
+    }
+
+    @keyframes pulse-glow {
+        0%, 100% {
+            transform: scale(1);
+            box-shadow: 0 8px 24px rgba(26, 115, 232, 0.4);
+        }
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 12px 32px rgba(26, 115, 232, 0.6);
+        }
+    }
+
+    /* Hacer ventana del chat más grande */
+    .chat-window {
+        width: 420px !important;
+        height: 650px !important;
+        max-height: 90vh !important;
+    }
+
+    /* Mensajes más grandes y legibles */
+    .chat-message {
+        font-size: 15px !important;
+        line-height: 1.5 !important;
+    }
+
+    .chat-window-wrapper-old {
         bottom: 20px !important;
         right: 80px !important;
     }
