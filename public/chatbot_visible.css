@@ -1,23 +1,31 @@
-/* CHATBOT MÁS VISIBLE Y GRANDE */
+/* CHATBOT MUY VISIBLE - ÍCONO GRANDE Y LLAMATIVO */
 
-/* Botón launcher más grande con animación */
+/* Botón launcher MÁS GRANDE que WhatsApp */
 .chat-launcher {
-    width: 70px !important;
-    height: 70px !important;
+    width: 80px !important;
+    height: 80px !important;
     background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%) !important;
-    box-shadow: 0 8px 24px rgba(26, 115, 232, 0.4) !important;
+    box-shadow: 0 12px 32px rgba(26, 115, 232, 0.6), 0 0 0 4px rgba(26, 115, 232, 0.2) !important;
     animation: pulse-glow 2s infinite !important;
     z-index: 9999 !important;
+    border: 3px solid #ffffff !important;
+}
+
+/* Ícono dentro del botón más grande */
+.chat-launcher svg,
+.chat-launcher img {
+    width: 45px !important;
+    height: 45px !important;
 }
 
 @keyframes pulse-glow {
     0%, 100% {
         transform: scale(1);
-        box-shadow: 0 8px 24px rgba(26, 115, 232, 0.4);
+        box-shadow: 0 12px 32px rgba(26, 115, 232, 0.6), 0 0 0 4px rgba(26, 115, 232, 0.2);
     }
     50% {
-        transform: scale(1.05);
-        box-shadow: 0 12px 32px rgba(26, 115, 232, 0.6);
+        transform: scale(1.1);
+        box-shadow: 0 16px 40px rgba(26, 115, 232, 0.8), 0 0 0 6px rgba(26, 115, 232, 0.3);
     }
 }
 
@@ -26,22 +34,77 @@
     width: 420px !important;
     height: 650px !important;
     max-height: 90vh !important;
+    background: #f5f7fa !important;
+}
+
+/* FONDO AZUL en lugar de negro */
+.chat-messages-container,
+.chat-messages,
+.chat-message-list {
+    background: linear-gradient(180deg, #e8eef5 0%, #f5f7fa 100%) !important;
 }
 
 /* Mensajes más grandes y legibles */
 .chat-message {
     font-size: 15px !important;
     line-height: 1.5 !important;
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    padding: 12px 16px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
 }
 
-/* Header más prominente */
+/* Mensajes del bot con fondo azul claro */
+.chat-message.bot-message,
+.chat-message-bot {
+    background: #e3f2fd !important;
+    border-left: 4px solid #1a73e8 !important;
+}
+
+/* Mensajes del usuario con fondo azul */
+.chat-message.user-message,
+.chat-message-user {
+    background: #1a73e8 !important;
+    color: #ffffff !important;
+}
+
+/* Header más prominente AZUL */
 .chat-header {
     background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%) !important;
     padding: 20px !important;
+    color: #ffffff !important;
 }
 
-/* Input más grande */
+/* Título del header en blanco */
+.chat-header-title,
+.chat-title {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+/* Input más grande con fondo blanco */
 .chat-input {
     font-size: 15px !important;
     padding: 15px !important;
+    background: #ffffff !important;
+    border: 2px solid #e8eef5 !important;
+    border-radius: 8px !important;
+}
+
+.chat-input:focus {
+    border-color: #1a73e8 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1) !important;
+}
+
+/* Botón enviar azul */
+.chat-input-send,
+.chat-send-button {
+    background: #1a73e8 !important;
+    color: #ffffff !important;
+}
+
+.chat-input-send:hover,
+.chat-send-button:hover {
+    background: #0d47a1 !important;
 }
