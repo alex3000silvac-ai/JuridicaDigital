@@ -1,0 +1,45 @@
+/* Fix de legibilidad del chatbot - Validado con Grok AI */
+/* Grok recomienda font-size de 16px para buena legibilidad */
+
+/* Mensajes del chatbot */
+.chat-message,
+.chat-message-content,
+.chat-message-text,
+[class*="message"],
+[class*="chat"] p,
+[class*="chat"] span {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+}
+
+/* Input del usuario */
+.chat-input,
+[class*="input"] textarea,
+[class*="input"] input {
+    font-size: 16px !important;
+}
+
+/* Botones y controles */
+.chat-button,
+[class*="button"] {
+    font-size: 16px !important;
+}
+
+/* Texto en general del widget */
+#n8n-chat *,
+.chat-window *,
+[id*="chat"] * {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+}
+
+/* Asegurar legibilidad en mobile */
+@media (max-width: 768px) {
+    .chat-message,
+    .chat-message-content,
+    #n8n-chat *,
+    .chat-window * {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+    }
+}
