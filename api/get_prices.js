@@ -7,22 +7,22 @@ export async function getPricesFromWebsite() {
     // Extraer precios usando regex
     const prices = {};
 
-    // Informe Preliminar
-    const informeMatch = html.match(/Informe Preliminar[^<]*\(\$([0-9,]+)\)/i);
+    // Informe Preliminar - buscar patron mas flexible
+    const informeMatch = html.match(/Informe\s+Preliminar[^\$]*\$([0-9,]+)/i);
     if (informeMatch) {
-      prices.informe = informeMatch[1].replace(',', '.');
+      prices.informe = informeMatch[1].replace(/,/g, '.');
     }
 
-    // Juicio Laboral
-    const juicioMatch = html.match(/Juicio[^<]*Laboral[^<]*desde[^<]*\$([0-9,]+)\)/i);
+    // Juicio Laboral - buscar patron mas flexible
+    const juicioMatch = html.match(/Juicio\s+Laboral[^\$]*desde[^\$]*\$([0-9,]+)/i);
     if (juicioMatch) {
-      prices.juicio = juicioMatch[1].replace(',', '.');
+      prices.juicio = juicioMatch[1].replace(/,/g, '.');
     }
 
-    // Counsel
-    const counselMatch = html.match(/Counsel[^<]*desde[^<]*\$([0-9,]+)/i);
+    // Counsel - buscar patron mas flexible
+    const counselMatch = html.match(/Counsel[^\$]*desde[^\$]*\$([0-9,]+)/i);
     if (counselMatch) {
-      prices.counsel = counselMatch[1].replace(',', '.');
+      prices.counsel = counselMatch[1].replace(/,/g, '.');
     }
 
     return prices;
