@@ -57,7 +57,79 @@ export default async function handler(req, res) {
 }
 
 // Handle chat messages
+// NUEVO: Handle chat con Grok AI
+async function handleChatWithGrok(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Método no permitido' });
+  }
+
+  const GROK_API_KEY = process.env.GROK_API_KEY;
+  const GROK_API_URL = process.env.GROK_API_URL || 'https://api.x.ai/v1';
+  const GROK_MODEL = process.env.GROK_MODEL || 'grok-beta';
+  const WHATSAPP = process.env.WHATSAPP_NUMBER || '56912345678';
+
+  const PROMPT = 'Eres el asistente de Jurídica Digital, vendedor de servicios legales. Servicios: Informe Preliminar ($7,500), Juicios Laborales ($800k+), Counsel ($30k/mes). Diferenciadores: 100% privado, 24h, 2 abogados. NO des consejos legales. SÍ promueve servicios. Profesional y amable.';
+
+  try {
+    const chatInput = req.body?.chatInput || req.body?.message || '';
+    if (!chatInput.trim()) {
+      return res.status(400).json({success: false, output: 'Mensaje vacío'});
+    }
+
+    console.log('[Grok Chat] Input:', chatInput);
+
+    const grokRes = await fetch(GROK_API_URL + '/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + GROK_API_KEY
+      },
+      body: JSON.stringify({
+        model: GROK_MODEL,
+        messages: [
+          {role: 'system', content: PROMPT},
+          {role: 'user', content: chatInput.trim()}
+        ],
+        temperature: 0.7,
+        max_tokens: 400
+      })
+    });
+
+    if (!grokRes.ok) {
+      const err = await grokRes.text();
+      console.error('Grok error:', grokRes.status, err);
+      throw new Error('Grok API error ' + grokRes.status);
+    }
+
+    const data = await grokRes.json();
+    let msg = data.choices?.[0]?.message?.content || 'Error procesando respuesta';
+    
+    if (msg.length > 150) {
+      msg += '\n\n💬 ¿Necesitas hablar con un asesor? https://wa.me/' + WHATSAPP;
+    }
+
+    console.log('[Grok Chat] Response:', msg.substring(0, 100));
+
+    return res.status(200).json({
+      success: true,
+      output: msg,
+      sessionId: 's_' + Date.now()
+    });
+
+  } catch (error) {
+    console.error('Chat error:', error);
+    return res.status(500).json({
+      success: false,
+      output: 'Error. Contacta por WhatsApp: https://wa.me/' + WHATSAPP
+    });
+  }
+}
+
+// Original handleChat redirigido a Grok
 async function handleChat(req, res) {
+  return await handleChatWithGrok(req, res);
+}
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Método no permitido' });
   }
