@@ -58,8 +58,8 @@ export default async function handler(req, res) {
 }
 
 // Handle chat messages
-// Handle chat with Grok AI and dynamic prices
-async function handleChat(req, res) {
+// NUEVO: Handle chat con Grok AI
+async function handleChatWithGrok(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Método no permitido' });
   }
@@ -69,19 +69,15 @@ async function handleChat(req, res) {
   const GROK_MODEL = process.env.GROK_MODEL || 'grok-beta';
   const WHATSAPP = process.env.WHATSAPP_NUMBER || '56912345678';
 
+  const PROMPT = 'Eres el asistente de Jurídica Digital, vendedor de servicios legales. Servicios: Informe Preliminar ($7,500), Juicios Laborales ($800k+), Counsel ($30k/mes). Diferenciadores: 100% privado, 24h, 2 abogados. NO des consejos legales. SÍ promueve servicios. Profesional y amable.';
+
   try {
-    // Obtener precios dinamicamente de la pagina web
-    const prices = await getCachedPrices();
-
-  const PROMPT = `Eres el asistente de Juridica Digital, vendedor de servicios legales. Servicios: Informe Preliminar (${prices.informe}), Juicios Laborales (desde ${prices.juicio}), Counsel (desde ${prices.counsel}/mes). Diferenciadores: 100% privado, 24h, 2 abogados. NO des consejos legales. SI promueve servicios. Profesional y amable.`;
-
     const chatInput = req.body?.chatInput || req.body?.message || '';
     if (!chatInput.trim()) {
       return res.status(400).json({success: false, output: 'Mensaje vacío'});
     }
 
     console.log('[Grok Chat] Input:', chatInput);
-    console.log('[Grok Chat] Precios:', prices);
 
     const grokRes = await fetch(GROK_API_URL + '/chat/completions', {
       method: 'POST',
@@ -128,6 +124,11 @@ async function handleChat(req, res) {
       output: 'Error. Contacta por WhatsApp: https://wa.me/' + WHATSAPP
     });
   }
+}
+
+// Original handleChat redirigido a Grok
+async function handleChat(req, res) {
+  return await handleChatWithGrok(req, res);
 }
 
 // Handle presupuesto (budget request)
