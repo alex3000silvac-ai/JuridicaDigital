@@ -130,46 +130,6 @@ async function handleChat(req, res) {
   return await handleChatWithGrok(req, res);
 }
 
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Método no permitido' });
-  }
-
-  try {
-    const body = req.body;
-    const chatInput = body.chatInput || body.message || body.mensaje || '';
-
-    if (!chatInput || chatInput.trim() === '') {
-      return res.status(400).json({
-        success: false,
-        error: 'Mensaje vacío'
-      });
-    }
-
-    // Forward to n8n
-    const n8nResponse = await fetch(`${N8N_BASE_URL}/webhook/chat`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        chatInput: chatInput.trim(),
-        sessionId: body.sessionId || generateSessionId(),
-        timestamp: new Date().toISOString()
-      })
-    });
-
-    if (!n8nResponse.ok) {
-      throw new Error(`n8n error: ${n8nResponse.status}`);
-    }
-
-    const data = await n8nResponse.json();
-    return res.status(200).json(data);
-
-  } catch (error) {
-    console.error('Chat error:', error);
-    return res.status(500).json({
-      success: false,
-      error: 'Error procesando chat',
       output: 'Lo siento, hubo un error. Por favor intenta nuevamente.'
     });
   }
