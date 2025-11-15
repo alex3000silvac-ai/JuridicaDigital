@@ -8,19 +8,19 @@ export async function getPricesFromWebsite() {
     const prices = {};
 
     // Informe Preliminar
-    const informeMatch = html.match(/Informe Preliminar.*?\$([0-9,]+)/i);
+    const informeMatch = html.match(/Informe Preliminar[^<]*\(\$([0-9,]+)\)/i);
     if (informeMatch) {
       prices.informe = informeMatch[1].replace(',', '.');
     }
 
     // Juicio Laboral
-    const juicioMatch = html.match(/Juicio Laboral.*?desde\s*\$([0-9,]+)/i);
+    const juicioMatch = html.match(/Juicio[^<]*Laboral[^<]*desde[^<]*\$([0-9,]+)\)/i);
     if (juicioMatch) {
       prices.juicio = juicioMatch[1].replace(',', '.');
     }
 
     // Counsel
-    const counselMatch = html.match(/Counsel.*?desde\s*\$([0-9,]+)/i);
+    const counselMatch = html.match(/Counsel[^<]*desde[^<]*\$([0-9,]+)/i);
     if (counselMatch) {
       prices.counsel = counselMatch[1].replace(',', '.');
     }
