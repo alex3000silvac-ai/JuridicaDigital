@@ -130,11 +130,6 @@ async function handleChat(req, res) {
   return await handleChatWithGrok(req, res);
 }
 
-      output: 'Lo siento, hubo un error. Por favor intenta nuevamente.'
-    });
-  }
-}
-
 // Handle presupuesto (budget request)
 async function handlePresupuesto(req, res) {
   if (req.method !== 'POST') {
