@@ -1,7 +1,7 @@
 // Webhook Proxy - Vercel Serverless Function
 // Redirige solicitudes al n8n local via Cloudflare Tunnel
 
-import { getCachedPrices } from './get_prices.js';
+import { getPricingPrompt } from './pricing.js';
 const N8N_BASE_URL = 'https://n8n.juridicadigital.cl';
 
 export default async function handler(req, res) {
@@ -70,10 +70,7 @@ async function handleChat(req, res) {
   const WHATSAPP = process.env.WHATSAPP_NUMBER || '56912345678';
 
   try {
-    // Obtener precios dinamicamente de la pagina web
-    const prices = await getCachedPrices();
-
-  const PROMPT = `Eres el asistente de Juridica Digital, vendedor de servicios legales. Servicios: Informe Preliminar (${prices.informe}), Juicios Laborales (desde ${prices.juicio}), Counsel (desde ${prices.counsel}/mes). Diferenciadores: 100% privado, 24h, 2 abogados. NO des consejos legales. SI promueve servicios. Profesional y amable.`;
+    const PROMPT = getPricingPrompt();
 
     const chatInput = req.body?.chatInput || req.body?.message || '';
     if (!chatInput.trim()) {
@@ -81,7 +78,6 @@ async function handleChat(req, res) {
     }
 
     console.log('[Grok Chat] Input:', chatInput);
-    console.log('[Grok Chat] Precios:', prices);
 
     const grokRes = await fetch(GROK_API_URL + '/chat/completions', {
       method: 'POST',
